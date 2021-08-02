@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
+import { Router  } from '@angular/router';  
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  user = {
+    email: "",
+    password:""
+  }
+
+  alert = false;
+  constructor(
+    private _loginService:LoginService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  login(form: NgForm) {
+
+    this._loginService.getLogin( form.value )
+    .subscribe( data => {
+      localStorage.setItem('token', data.access_token );
+      this.router.navigate(['/folders']);
+    },error => {
+      console.log(error);
+      this.alert = true;
+    });
+
   }
 
 }

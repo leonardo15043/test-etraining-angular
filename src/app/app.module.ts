@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { FoldersComponent } from './components/folders/folders.component';
 import { DetailFoldersComponent } from './components/folders/detail-folders/detail-folders.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthGuardService } from '../app/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,11 @@ import { DetailFoldersComponent } from './components/folders/detail-folders/deta
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
