@@ -1,1 +1,35 @@
-<p>folders works!</p>
+<div class="container mt-5">
+    <div class="row mt-5"> 
+      <div class="col-12">
+          <h2>Listado de Carpetas</h2>
+          <button type="button" class="btn btn-outline-success mb-2" (click)="open(mymodal)">Nueva carpeta</button> 
+      </div>
+      <div class="col-12 mt-5">
+        <div class="row" >
+            <div class="col-2" *ngFor="let item of folders">
+              <i class="bi bi-folder-fill icon-folder "  [routerLink]="['/folders',item.id]"><label>{{ item.name }}</label></i>
+            </div>
+        </div>
+    </div>
+      
+    </div>
+</div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Nueva Carpeta</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="saveFolder(forma)" #forma="ngForm">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="folder.name" id="name" name="name" placeholder="Nombre">
+            <input type="hidden" class="form-control"  [(ngModel)]="folder.parent" id="parent" name="parent">
+          </div>
+          <button type="submit" class="btn btn-primary my-1" (click)="modal.close('Save click')">Guardar</button>
+        </form>
+    </div>
+  </ng-template>

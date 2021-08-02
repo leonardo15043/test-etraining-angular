@@ -9,6 +9,7 @@ import { DetailFoldersComponent } from './components/folders/detail-folders/deta
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from '../app/services/auth-guard.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthGuardService } from '../app/services/auth-guard.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]

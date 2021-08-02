@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class FoldersService {
 
   private url = environment.service.url;
   private headers: HttpHeaders;
@@ -18,7 +18,12 @@ export class LoginService {
     this.headers = this.headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
   }
 
-  getLogin( user:any ) {
-    return this.http.post<any>(`${ this.url }login` , user).pipe( map( data => data ));
+  getFoldersParent( id : number){
+    return this.http.get<any>(`${ this.url }foldersParent/${id}`, { headers: this.headers }).pipe( map( data => data ));
   }
+
+  saveFolder(folder: any) {
+    return this.http.post(`${ this.url }folders`, folder , { headers: this.headers }).pipe( map( data => data ));
+  }
+
 }

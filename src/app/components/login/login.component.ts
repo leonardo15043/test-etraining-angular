@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this._loginService.getLogin( form.value )
     .subscribe( data => {
       localStorage.setItem('token', data.access_token );
-      this.router.navigate(['/folders']);
+      this.router.navigate(['/folders',0]);
     },error => {
       console.log(error);
       this.alert = true;
